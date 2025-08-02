@@ -11,7 +11,7 @@
       <div class="content">
         <!--pinterest logo-->
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRS-meG8HDT-iFgfeMdVxdjT_zYLvMVrd8Nw&s" alt="pin logo" class="img1" />
-        <p class="header">Log in to see more</p>
+        <p class="header">Welcome to printerest</p>
 
         <% if(error.length > 0){ %>
            <p class="error"><%= error %></p>
@@ -19,18 +19,13 @@
         <form action="/login" method="post">
         <input type="text" name="username" placeholder="Username" class="detail" />
         <input type="password" name="password" placeholder="Password" class="detail" />
+        <a class="passforget " href="#">Forget Your Password ?</a>
         <button type="submit" class="btn int">Login My Account</button>
         </form>
 
 
       <br />
-        <button class="btn ggl">
-          <i
-            class="fab fa-google"
-            style="color: rgb(11, 241, 22); padding-right: 10px"
-          ></i
-          ><a href="#">Forget Your Password</a>
-        </button>
+      
 
         <footer>
           <p>
@@ -38,7 +33,7 @@
             <b>Terms of Service, Privacy policy.</b>
           </p>
           <hr />
-          <a class="Signup" href="/">Not on Pinterest yet? Sign up</a>
+          <a class="Signup " href="/">Don't have an account ?</a>
         </footer>
       </div>
     </div>

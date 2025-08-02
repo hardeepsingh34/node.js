@@ -44,7 +44,9 @@ exports.logout = (req, res) => {
 exports.profile = async (req, res) => {
   const user = await userModel.findOne({
     username: req.session.passport.user,
-  });
+  })
+  .populate("posts");
+  console.log(user);
   res.render("profile", { user: user });
 };
 
