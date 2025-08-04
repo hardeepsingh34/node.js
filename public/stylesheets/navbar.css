@@ -1,0 +1,34 @@
+*
+{
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", "Myriad          Pro", "DejaVu Sans Condensed", Helvetica, Arial,        "sans-serif";
+}
+nav{
+    background-color: black;
+    color: white;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 10vh;
+    align-items: center;
+}
+.navLink{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.logoutbtn{
+    background-color: rgb(221, 48, 48);
+    outline: none;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 7px;
+}

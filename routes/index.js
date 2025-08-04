@@ -14,7 +14,5 @@ router.use('/', multer);
 router.get('/', function(req, res) {
   res.render('index');
 });
-router.get('/feed' , function(req,res){
-  res.render('feed');
-})
+
 module.exports = router;

@@ -1,0 +1,77 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>printerest</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+<%- include('./navbar') %>
+<div class=" maincontainer">
+    
+<div class="container">
+    <div class="d-flex justify-content-between flex-wrap mx-3 align-items-start ">
+<div class="verticalContainer">
+  <% postArr[0].forEach(function(post){ %>
+
+
+<div class="card mycard my-2" style="width: 18rem;">
+  <img src="/images/uploads/<%= post.image %>" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= post.imageText %></h5>
+    <div class="description"><%= post.description %> </div>
+  </div>
+</div>
+  <%})%>
+</div>
+<div class="verticalContainer">
+  <% postArr[1].forEach(function(post){ %>
+
+
+<div class="card mycard my-2" style="width: 18rem;">
+  <img src="/images/uploads/<%= post.image %>" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= post.imageText %></h5>
+    <div class="description"><%= post.description %> </div>
+  </div>
+</div>
+  <%})%>
+</div><div class="verticalContainer">
+  <% postArr[2].forEach(function(post){ %>
+
+
+<div class="card mycard my-2" style="width: 18rem;">
+  <img src="/images/uploads/<%= post.image %>" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= post.imageText %></h5>
+    <div class="description"><%= post.description %> </div>
+  </div>
+</div>
+  <%})%>
+</div><div class="verticalContainer">
+  <% postArr[3].forEach(function(post){ %>
+
+
+<div class="card mycard my-2" style="width: 18rem;">
+  <img src="/images/uploads/<%= post.image %>" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= post.imageText %></h5>
+    <div class="description"><%= post.description %> </div>
+  </div>
+</div>
+  <%})%>
+</div>
+
+</div>
+<a href="/addpost" class="button bg-danger my-2">Add New post</a>
+</div>
+
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  </body>
+</html>

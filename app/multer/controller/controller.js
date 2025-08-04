@@ -27,9 +27,10 @@ exports.fileUpload = async (req, res)=>{
             image: req.file.filename,
             imageText:req.body.filecaption,
             user: user._id,
+            description: req.body.description,
         });
         console.log(post._id);  
         user.posts.push(post._id);
         await user.save();
-        res.redirect('/profile');
+        res.redirect('/userposts');
 }
