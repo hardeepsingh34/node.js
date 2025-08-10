@@ -87,3 +87,6 @@ body{
   opacity: .95;
   box-shadow: 0 0 10px #fff;
 }
+.blktext{
+  color: black;
+}

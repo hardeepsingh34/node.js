@@ -26,9 +26,15 @@
     </div>
     <div class="card mycard my-2" style="width: 18rem;">
       <a href="/userposts">
-  <img src="/images/uploads/<%= user.posts[0].image %>" class="card-img-top" alt="..."></a>
-  <div class="card-body">
-    <h5 class="card-title"><%= user.posts.length %> posts</h5>
+
+        <% if (user.posts && user.posts[0] && user.posts[0].image) { %>
+  <img src="/images/uploads/<%= user.posts[0].image %>" class="card-img-top" alt="...">
+<% } else { %>
+  <img src="/images/download.webp" class="card-img-top" alt="...">
+<% } %>
+
+  <div class="card-body ">
+    <h5 class="card-title "><%= user.posts.length %> posts</h5>
     
   </div>
 </div>
