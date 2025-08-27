@@ -2,6 +2,8 @@ const passport = require("passport");
 const userModel = require("../models/model");
 const postModel = require("../../post/models/model")
 const localStrategy = require("passport-local");
+const { getBucket } = require("../../../lib/gridfs");
+const mongoose = require('mongoose');
 passport.use(new localStrategy(userModel.authenticate()));
 
 //registor 
@@ -67,6 +69,7 @@ exports.profile = async (req, res) => {
   res.render("profile", {user: user});
 };
 
+//add new post
 exports.add = async( req, res, next) =>{
 
   const user = await userModel.findOne({
@@ -90,7 +93,7 @@ exports.add = async( req, res, next) =>{
     }
     count++;
   })
-  console.log(postArr);
+  // console.log(postArr);
     res.render('userposts', { postArr: postArr});
 } 
 
@@ -102,6 +105,43 @@ exports.isLoggedIn = (req, res, next) => {
 exports.addpost= (req,res, next) =>{
   res.render("addpost");
 }
+// getting image file from gridfs
+exports.getFile = async (req, res) => {
+  try {
+    const bucket = getBucket();
+    const fileIdOrName = req.params.id;
+
+    let downloadStream;
+
+    // Try to parse as ObjectId first
+    if (mongoose.Types.ObjectId.isValid(fileIdOrName)) {
+      const fileId = new mongoose.Types.ObjectId(fileIdOrName);
+      downloadStream = bucket.openDownloadStream(fileId);
+    } else {
+      // fallback: treat as filename
+      downloadStream = bucket.openDownloadStreamByName(fileIdOrName);
+    }
+
+    downloadStream.on('file', (file) => {
+      // Dynamically set Content-Type if available
+      if (file.contentType) {
+        res.set('Content-Type', file.contentType);
+      } else {
+        res.set('Content-Type', 'application/octet-stream');
+      }
+    });
+
+    downloadStream.on('error', (err) => {
+      console.error('Download error:', err);
+      res.status(404).send('File not found');
+    });
+
+    downloadStream.pipe(res);
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    res.status(500).send('Something went wrong.');
+  }
+};
 //home
 exports.home = async(req,res)=> {
   const user = await userModel.findOne({username: req.session.passport.user});

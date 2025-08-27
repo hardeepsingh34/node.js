@@ -8,8 +8,32 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const passport = require('passport');
 var User = require('./app/user/models/model')
+var Grid = require('gridfs-stream');
+const mongoURI= "mongodb://127.0.0.1:27017/printrest"
 var app = express();
+const multer = require("multer")
 var flash = require('connect-flash')
+var mongoose = require('mongoose')
+
+
+const { initGridFS } = require('./lib/gridfs');
+
+async function connectDB() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/printrest');
+    mongoose.connection.once('open', () => {
+      initGridFS();
+      console.log('Mongo + GridFS ready');
+    });
+  } catch (err) {
+    console.error("MongoDB connection failed:", err);
+    process.exit(1);
+  }
+}
+
+connectDB();
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -29,6 +53,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

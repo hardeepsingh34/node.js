@@ -19,7 +19,9 @@ user:{
     type: Date,
     default: Date.now
   },
-
+imageId:{
+  type: String,
+},
   likes: {
     type: Array,
     default: [],

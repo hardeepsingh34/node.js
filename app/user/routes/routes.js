@@ -11,4 +11,5 @@ router.get('/profile', user.isLoggedIn, user.profile);
 router.get("/userposts", user.add);
 router.get("/addpost", user.addpost);
 router.get('/home' ,user.home);
+router.get('/image/:id', user.getFile)
 module.exports = router;
